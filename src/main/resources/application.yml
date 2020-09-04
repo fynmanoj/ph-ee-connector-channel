@@ -6,15 +6,15 @@ camel:
     json-jackson:
       auto-discover-object-mapper: true
 
-dfspids: "DFSPID"
+dfspids: "ibank-usa,ibank-india"
 
 bpmn:
   flows:
     payment-transfer: "PayerFundTransfer-{dfspid}"
     transaction-request: "PayeeTransactionRequest-{dfspid}"
     party-registration: "PartyRegistration-{dfspid}"
-    gsma-base-transaction: "gsma_base_transaction"
-    gsma-int-transfer: "gsma_int_transfer"
+    gsma-base-transaction: "gsma_base_transaction-{dfspid}"
+    gsma-int-transfer: "gsma_int_transfer-{dfspid}"
     gsma-payee-process: "gsma_payee_process"
     gsma-bill-payment: "gsma_bill_payment"
     gsma-link-based-payment: "gsma_link_transfer"
@@ -33,6 +33,6 @@ zeebe:
 rest:
   authorization:
     enabled: false
-    host: http://localhost:8080
+    host: http://identity.ibank.financial
   connector-ams:
-    host: "http://localhost:6000"
+    host: "http://ph-ee-connector-ams-mifos"
