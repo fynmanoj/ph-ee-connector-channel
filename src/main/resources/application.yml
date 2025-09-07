@@ -21,7 +21,13 @@ mpesa:
     service:
       paymentTypeId: 1
       auth:
-        token: "Bearer ABDC1234567890"
+        apiEnabled: "true"
+        api:
+          url: ""
+          scope: openid
+          userName: "Username"
+          password: "Password"
+        token: "ABDC1234567890"
       lookup:
         api:
           url: "https://dddf1c57-f879-4696-8e85-27da297ef6af.mock.pstmn.io/alerts"
@@ -38,7 +44,7 @@ server:
     key-store-type: JKS
     key-password: "password"
     key-store-password: "password"
-  port: 8444
+  port: 8443
 
 operations:
   url: "http://bb-operations.mifos.io/api/v1"
