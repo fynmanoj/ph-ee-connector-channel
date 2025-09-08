@@ -23,7 +23,7 @@ mpesa:
       auth:
         apiEnabled: "true"
         api:
-          url: ""
+          url: "https://dddf1c57-f879-4696-8e85-27da297ef6af.mock.pstmn.io/oauth2/token"
           scope: openid
           userName: "Username"
           password: "Password"

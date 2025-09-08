@@ -60,10 +60,10 @@ public class MpesaConnectorServiceImpl implements MpesaConnectorService {
     @Value("${mpesa.account.service.auth.api.scope}")
     private String authScope;
 
-    @Value("${mpesa.account.service.auth.userName}")
+    @Value("${mpesa.account.service.auth.api.userName}")
     private String authUserName;
 
-    @Value("${mpesa.account.service.auth.password}")
+    @Value("${mpesa.account.service.auth.api.password}")
     private String authPassword;
 
 
@@ -100,7 +100,7 @@ public class MpesaConnectorServiceImpl implements MpesaConnectorService {
             return oauthToken;
         }
 
-        if(statcTokenMap.get(TOKEN)!=null && System.currentTimeMillis()> (int)statcTokenMap.get(EXPIRES_AT)){
+        if(statcTokenMap.get(TOKEN)!=null && System.currentTimeMillis() < (Long) statcTokenMap.get(EXPIRES_AT)){
             logger.info("Fetching Access TOKEN:  setting previous token");
             return (String) statcTokenMap.get(TOKEN);
         }
@@ -160,7 +160,7 @@ public class MpesaConnectorServiceImpl implements MpesaConnectorService {
     @Override
     public void sendCreditRequest(String tenantId, WithdrawHookRequest request){
 
-        if(!paymentTypeId.equals(request.getResponse().getChanges().getOrDefault("paymentTypeId","0"))){
+        if(!paymentTypeId.equals(String.valueOf(request.getResponse().getChanges().getOrDefault("paymentTypeId","0")))){
             return;
         }
 
